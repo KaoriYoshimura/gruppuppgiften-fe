@@ -3,17 +3,12 @@
 
 (function IIFE(){
   const remoteUrl = 'localhost:3000';
-  let animalType = 'cats';
+  let animalType = 'cat';
   const $animalSelect = document.getElementById('animal-select');
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
-  let $creatureChoice = document.querySelector('#selectCreature');
   const $radioButton = document.querySelectorAll('input[type=radio]');
-
-  function getCreature() {  
-    console.log($creatureChoice);
-  }
 
   function clearElement(element) {
     while(element.firstChild) {
@@ -32,11 +27,11 @@
   function populateSelect(type) {
     clearElement($animalSelect);
     $animalSelect.setAttribute('data-loaded', 'false');
-    fetch('http://${remoteUrl}/${type}s')
+    fetch(`http://${remoteUrl}/${type}s`)
       .then((response) => response.json())
       .then((data) => {
         const animals = data.data;
-        const $defaultOption = createOption(null, 'Select ${animalType}');
+        const $defaultOption = createOption(null, `Select ${animalType}`);
         $animalSelect.appendChild($defaultOption);
         animals.forEach((animal) => {
           const $option = createOption(animal.id, animal.name);
@@ -69,13 +64,12 @@
     });
   }
 
-  function listenToCreatureButton() {
+  function listenToCreatureRadioButton() {
     for (let i=0; length = $radioButton.length; i++) {
-      const select = $radioButton[i];
-        select.addEventListener('click', (e) => {
+      const element = $radioButton[i];
+        element.addEventListener('click', (e) => {
           animalType = e.target.value;
           populateSelect(e.target.value)
-      console.log(animalType);
     });
   }
 }
@@ -103,5 +97,5 @@
   populateSelect(animalType);
   listenToSelect();
   listenToAdd();
-  listenToCreatureButton();
+  listenToCreatureRadioButton();
 })();
