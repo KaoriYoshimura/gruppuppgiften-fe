@@ -72,6 +72,27 @@ describe('html tests', () => {
       });
   });
 
+  test('select radio button', (done) => {
+    // First find the radio-button and select it
+    driver.wait(until.elementLocated(By.id('dog')), timeout)
+      .then((select) => {
+        driver.wait(until.elementIsVisible(select));
+        select.click();
+        return select;
+      })
+
+      // Wait for the animal description to update
+      .then(() => driver.wait(until.elementLocated(By.id('animal-select')), timeout))
+      .then(waitUntilLoaded)
+      // Get the animal description text and validate it
+      .then((select) => select.findElements(By.tagName('option')))
+      .then((options) => options[0].getText())
+      .then((text) => {
+        expect(text).toBe('Select dog');
+        done();
+      });
+  });
+
   test('upload animal', (done) => {
     // Find the animal input field and fill it with animal data
     driver.wait(until.elementLocated(By.id('animal-to-add')), timeout)
