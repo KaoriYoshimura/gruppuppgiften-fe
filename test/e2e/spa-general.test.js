@@ -1,25 +1,29 @@
 import chromedriver from 'chromedriver';
-import { Builder, until, By } from 'selenium-webdriver';
+import {
+  Builder,
+  until,
+  By
+} from 'selenium-webdriver';
 import server from '../../app';
 
-let listeningServer;
-let driver;
+describe('e2e tests for animal type selector as radio', () => {
+  let listeningServer;
+  let driver;
 
-const PORT = 8081;
-const baseUrl = `localhost:${PORT}/`;
-const timeout = 1000;
+  const PORT = 8081;
+  const baseUrl = `localhost:${PORT}/`;
+  const timeout = 1000;
 
-const waitUntilLoaded = (element) => {
-  return driver.wait(element.getAttribute('data-loaded'))
-    .then((loaded) => {
-      if (loaded === 'true') {
-        return element;
-      }
-      return false;
-    });
-};
+  const waitUntilLoaded = (element) => {
+    return driver.wait(element.getAttribute('data-loaded'))
+      .then((loaded) => {
+        if (loaded === 'true') {
+          return element;
+        }
+        return false;
+      });
+  };
 
-describe('html tests', () => {
   beforeAll((done) => {
     listeningServer = server.listen(PORT);
 
@@ -37,7 +41,10 @@ describe('html tests', () => {
   test('smoke test', (done) => {
     // Find an element that is available in the static html of the page
     driver.wait(until.elementLocated(By.id('animal-listing')), timeout)
-      .then((element) => element.getAttribute('id'))
+      .then((element) => {
+        return element.getAttribute('id');
+      })
+
       // Get its id and check that it is identical to the id we started with
       // (yes, it's a pretty stupid test - it just validates that the server and
       // selenium are working)
@@ -56,7 +63,7 @@ describe('html tests', () => {
         return select;
       })
       // List the options and simulate a click on the second item
-      .then((select) => select.findElements(By.tagName('option')))
+      .then((select) => select.findElements(By.tagName('option'))) 
       .then((options) => {
         driver.wait(until.elementIsVisible(options[1]));
         options[1].click();
@@ -74,7 +81,7 @@ describe('html tests', () => {
 
   test('select radio button', (done) => {
     // First find the radio-button and select it
-    driver.wait(until.elementLocated(By.id('dog')), timeout)
+    driver.wait(until.elementLocated(By.id('dogs')), timeout)
       .then((select) => {
         driver.wait(until.elementIsVisible(select));
         select.click();

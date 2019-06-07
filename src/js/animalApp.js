@@ -1,7 +1,8 @@
 // globals document
-"use strict";
 
-(function IIFE(){
+// "use strict";
+
+(function IIFE() {
   const remoteUrl = 'localhost:3000';
   let animalType = 'cat';
   const $animalSelect = document.getElementById('animal-select');
@@ -11,7 +12,7 @@
   const $radioButton = document.querySelectorAll('input[type=radio]');
 
   function clearElement(element) {
-    while(element.firstChild) {
+    while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
   }
@@ -44,14 +45,13 @@
   function getByTypeAndId(type, id) {
     $animalDescription.setAttribute('data-loaded', 'false');
     clearElement($animalDescription);
-
     fetch(`http://${remoteUrl}/${type}/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        //const $pre = document.createElement('pre');
+        // const $pre = document.createElement('pre');
         const text = JSON.stringify(data.data, null, '\t');
         const $text = document.createTextNode(text);
-        //$pre.appendChild($preText);
+        // $pre.appendChild($preText);
         $animalDescription.appendChild($text);
         $animalDescription.setAttribute('data-loaded', 'true');
       });
@@ -98,4 +98,4 @@
   listenToSelect();
   listenToAdd();
   listenToCreatureRadioButton();
-})();
+}());

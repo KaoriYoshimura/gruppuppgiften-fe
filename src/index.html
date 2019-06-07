@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="en">
-<head><title>Little animal fanpage</title></head>
+
+<head>
+    <title>Little animal fanpage</title>
+</head>
+
 <body>
-
-<div>
-    <input type="radio" id="cats" name="creature" value="cat" checked>
-    <label for="cats">Cats</label>
-    <input type="radio" id="dogs" name="creature" value="dog">
-    <label for="dogs">Dogs</label>
-    <input type="radio" id="pokemons" name="creature" value="pokemon">
-    <label for="pokemon">Pokemons</label>
-</div>
-
-
-<div id="animal-listing">
-    <label for="animal-select">Select a single animal</label>
-    <select id="animal-select" data-loaded="false">
-    </select>
-    <div id="animal-description" data-loaded="false">Please make your selection</div>
-</div>
-<div id="animal-addition">
-    <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-    <textarea id="animal-to-add"></textarea>
-    <button id="animal-add">Add animal</button>
-</div>
-<script src="./js/animalApp.js"></script>
+    <div id="animal-listing">
+        <div>
+            <input type="radio" id="cats" name="creature" value="cat" checked>
+            <label for="cats">Cats</label>
+            <input type="radio" id="dogs" name="creature" value="dog">
+            <label for="dogs">Dogs</label>
+            <input type="radio" id="pokemons" name="creature" value="pokemon">
+            <label for="pokemons">Pokemons</label>
+        </div>
+        <label for="animal-select">Select a single animal</label>
+        <select id="animal-select" data-loaded="false">
+        </select>
+        <div id="animal-description" data-loaded="false">Please make your selection</div>
+    </div>
+    <div id="animal-addition">
+        <label for="animal-to-add">Enter animal data to add (JSON format)</label>
+        <textarea id="animal-to-add"></textarea>
+        <button id="animal-add">Add animal</button>
+    </div>
+    <script src="./js/animalApp.js"></script>
 </body>
+
 </html>
