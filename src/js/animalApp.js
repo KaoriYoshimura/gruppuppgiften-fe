@@ -29,7 +29,7 @@
     clearElement($animalSelect);
     $animalSelect.setAttribute('data-loaded', 'false');
     fetch(`http://${remoteUrl}/${type}s`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((data) => {
         const animals = data.data;
         const $defaultOption = createOption(null, `Select ${animalType}`);
@@ -46,7 +46,7 @@
     $animalDescription.setAttribute('data-loaded', 'false');
     clearElement($animalDescription);
     fetch(`http://${remoteUrl}/${type}/${id}`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((data) => {
         // const $pre = document.createElement('pre');
         const text = JSON.stringify(data.data, null, '\t');
@@ -65,14 +65,14 @@
   }
 
   function listenToCreatureRadioButton() {
-    for (let i=0; length = $radioButton.length; i++) {
+    for (let i = 0; i < $radioButton.length; i++) {
       const element = $radioButton[i];
-        element.addEventListener('click', (e) => {
-          animalType = e.target.value;
-          populateSelect(e.target.value)
-    });
+      element.addEventListener('click', (e) => {
+        animalType = e.target.value;
+        populateSelect(e.target.value);
+      });
+    }
   }
-}
 
   function listenToAdd() {
     $animalAdd.addEventListener('click', () => {
@@ -91,11 +91,14 @@
           $animalAdd.setAttribute('data-loaded', 'true');
           populateSelect(animalType);
         });
-    })
+    });
   }
 
   populateSelect(animalType);
   listenToSelect();
   listenToAdd();
   listenToCreatureRadioButton();
+  module.exports = {
+    listenToCreatureRadioButton,
+  };
 }());
