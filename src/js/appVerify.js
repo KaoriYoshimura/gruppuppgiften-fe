@@ -1,8 +1,8 @@
 /* eslint-disable default-case */
 (function IIFE() {
   const $formVarify = document.getElementById('formVarify');
-  const pNumPattern = /\d{6}[+-]\d{4}/;
-  const namePattern = /\w{3,}\s\w{3,}/;
+  const personalNumberPattern = /(19|20)?\d{6}[-]?\d{4}/;
+  const userNamePattern = /\w{3,}\s\w{3,}/;
 
   function onSubmitForm(e) {
     let formValid = true;
@@ -13,8 +13,8 @@
 
       switch (inputDataType) {
         case 'personal number':
-          if (!inputValue.match(pNumPattern)) {
-            alert('Please enter correct personal number');
+          if (!inputValue.match(personalNumberPattern)) {
+            alert('Please enter correct personal number!');
             e.target[i].className = 'error';
             formValid = false;
           } else {
@@ -22,8 +22,8 @@
           }
           break;
         case 'name':
-          if (!inputValue.match(namePattern)) {
-            alert('not valid name');
+          if (!inputValue.match(userNamePattern)) {
+            alert('This is not a valid name!');
             e.target[i].className = 'error';
             formValid = false;
           } else {
@@ -41,7 +41,6 @@
 
   function onInvalid(e) {
     e.preventDefault();
-    console.log(e.target.getAttribute('id'));
     e.target.style.borderColor = 'red';
   }
 
@@ -56,16 +55,7 @@
     registerInvalidListeners($formVarify);
   }
 
-  // eslint-disable-next-line func-names
   window.pageLoad = function () {
     registerListeners();
   };
-
-
-  //   To activate strict is needed
-  //   function pageLoad() {
-  //     console.log('loaded');
-  //     registerListeners();
-  //   }
-  //   window.pageLoad = pageLoad;
 }());

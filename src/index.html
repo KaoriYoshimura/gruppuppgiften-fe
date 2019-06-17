@@ -43,31 +43,32 @@
     </div>
     <div id="animal-addition">
         <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-        <textarea id="animal-to-add"></textarea>
+        <textarea id="animal-to-add" required></textarea>
         <button id="animal-add">Add animal</button>
     </div>
 
     <!-- Form verification -->
     <div class="form-verify">
-        <h2>Form verification</h2>
+        <h2>User information</h2>
         <div>
             <form id="formVarify">
                 <div>
                     <label for="formVarify-input1">Name:</label>
                     <!-- Both surname should be more than 3 charactors-->
-                    <input id="formVarify-input1" type="text" data-type="name" pattern="\w{3,}\s\w{3,}"/>
-                    <span class="error">Both surname and given name are expected (no hyphens)</span>
+                    <input id="formVarify-input1" type="text" data-type="name"  pattern="\w{3,}\s\w{3,}"/>
+                    <span class="error">Please write your first and last name (no hyphens)</span>
                 </div>
                 <div>
                     <label for="formVarify-input2">Swedish personal number</label>
-                    <input id="formVarify-input2" type="text" data-type="personal number" minlength="3" pattern="(19|20)?\d{6}[+-]?\d{4}"/>
-                    <span class="error">In the format of 10 digits delimited by -/+</span>
+                    <input id="formVarify-input2" type="text" data-type="personal number"  pattern="(19|20)?\d{6}[-]?\d{4}"/>
+                    <span class="error">YYMMDD-xxxx</span>
                 </div>
                 <button id="formVarify-submit" type="submit">Submit</button>
             </form>
         </div>
     </div>
     <script src="./js/animalApp.js"></script>
+    <script>pageLoad();</script>
     <script src="./js/appVerify.js"></script>
     <script>pageLoad();</script>
 </body>
