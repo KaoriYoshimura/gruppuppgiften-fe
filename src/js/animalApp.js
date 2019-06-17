@@ -94,11 +94,15 @@
     });
   }
 
-  populateSelect(animalType);
-  listenToSelect();
-  listenToAdd();
-  listenToCreatureRadioButton();
+  window.pageLoad = function () {
+    populateSelect(animalType);
+    listenToSelect();
+    listenToAdd();
+    listenToCreatureRadioButton();
+  };
+
   module.exports = {
     listenToCreatureRadioButton,
+    createOption,
   };
 }());

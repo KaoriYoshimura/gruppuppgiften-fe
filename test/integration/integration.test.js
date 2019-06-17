@@ -58,7 +58,7 @@ describe('integration tests for listenToCreatureRadioButton', () => {
     const expectedOutcome2 = `<select id="animal-select" data-loaded="true"><option value="null">Select ${type}</option><option value="0">name1</option><option value="1">name2</option></select>`;
     // const animalAdd = `<button id="animal-add">Add animal</button>`;
     // Test-run
-    // listenToCreatureRadioButton();
+    listenToCreatureRadioButton();
     let clickEvent = document.createEvent('HTMLEvents');
     clickEvent.initEvent('click', false, true);
     $animalTypeSelect[0].dispatchEvent(clickEvent);
@@ -66,7 +66,7 @@ describe('integration tests for listenToCreatureRadioButton', () => {
     // Verify
     expect($animalSelect.outerHTML).toBe(expectedOutcome1);
     expect(window.fetch.mock.calls[0][0]).toBe(expectedUrl);
-    expect(window.fetch).toHaveBeenCalledTimes(2);
+    expect(window.fetch).toHaveBeenCalledTimes(1);
     
 
     // Resolve the promises and keep verifying
