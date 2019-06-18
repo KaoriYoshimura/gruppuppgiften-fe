@@ -15,14 +15,17 @@
         input:invalid {
           color: red;
         }
+
         span.error {
           display: none;
         }
+
         input:invalid ~ span.error {
           display: inline;
           color: red;
           font-size: 1em
         }
+
       </style>
 </head>
 
@@ -44,7 +47,8 @@
     <div id="animal-addition">
         <label for="animal-to-add">Enter animal data to add (JSON format)</label>
         <textarea id="animal-to-add" required></textarea>
-        <button id="animal-add">Add animal</button>
+        <button id="animal-add">Add animal</button> 
+        <span id="creature-post-message"></span>
     </div>
 
     <!-- Form verification -->
