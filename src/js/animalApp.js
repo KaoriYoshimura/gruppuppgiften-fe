@@ -10,6 +10,8 @@
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
   const $radioButton = document.querySelectorAll('input[type=radio]');
+  const $postMessage = document.getElementById('creature-post-message');
+
 
   function clearElement(element) {
     while (element.firstChild) {
@@ -48,10 +50,8 @@
     fetch(`http://${remoteUrl}/${type}/${id}`)
       .then(response => response.json())
       .then((data) => {
-        // const $pre = document.createElement('pre');
         const text = JSON.stringify(data.data, null, '\t');
         const $text = document.createTextNode(text);
-        // $pre.appendChild($preText);
         $animalDescription.appendChild($text);
         $animalDescription.setAttribute('data-loaded', 'true');
       });
@@ -90,6 +90,7 @@
         .then(() => {
           $animalAdd.setAttribute('data-loaded', 'true');
           populateSelect(animalType);
+          $postMessage.innerHTML = `Your ${animalType} was successfully added!`;
         });
     });
   }
